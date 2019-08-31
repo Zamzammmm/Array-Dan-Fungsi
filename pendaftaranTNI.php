@@ -1,3 +1,12 @@
+<?php
+function t_b($bb,$tb){
+    if ($bb<=60 && $bb >= 50 && $tb>165) {
+        return "Selamat Anda DiTerima";
+    }else {
+        return "Kembali Latihan Pantang Menyerah";        
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,42 +17,50 @@
 </head>
 <body>
     <fieldset>
-        <legend>
-            PENDAFTARAN TNI
-        </legend>
-        <form action="" method="get">
-            <label for="">Nama</label>
-            <input type="text" name="nama" required><br>
-            <br>
-            <label for="">Berat Badan</label>
-            <input type="number" name="bb" min="1" required><br>
-            <br>
-            <label for="">Tinggi Badan</label>
-            <input type="number" name="tb" min"20" required><br>
-            <br>
-            <br>
-            <input type="submit" name="simpan" value="SIMPAN">
-        </form>
+    <legend>Pendaftaran TNI</legend>
+    <form action="" method="get">
+    <table>
+    <tr>
+    <td><label for="">Nama</label></td>
+    <td><input type="text" name="nama"  id="" required></td>
+    </tr>
+    <tr>
+    <td><label for="">Berat Badan</label></td>
+    <td><input type="number" name="berat_badan" min="1" id="" required></td>
+    </tr>
+    <tr>
+    <td><label for="">Tinggi Badan</label></td>
+    <td><input type="number" name="tinggi_badan" min="1" id="" required></td>
+    </tr>
+    <tr>
+    <td></td>
+    <td><input type="submit" name="kirim" value="kirim"></td>
+    </tr>
+    </table>
+    </form>
     </fieldset>
-    <br><br>
     <?php
-        if (isset($_GET['simpan'])) {
-            $nama = $_GET['nama'];
-            $berat = $_GET['bb'];
-            $tinggi = $_GET['tb'];
-            function tni($bb, $tb){
-                if ($bb < 60 || $tb > 165) {
-                    return "Selamat anda DITERIMA";
-                } else {
-                    return "Kembali Latihan Pantang Menyerah TIDAK DITERIMA";
-                }
-            }
-            echo "Nama : $nama<br>";
-            echo "Berat Badan : $berat kg<br>";
-            echo "Tinggi Badan : $tinggi cm<br>";
-            $status = tni($bb, $tb);
-            echo "Keterangan : $status";
-        }
+    if (isset($_GET['kirim'])) {
+        $nama = $_GET['nama'];
+        $berat_badan = $_GET['berat_badan'];
+        $tinggi_badan = $_GET['tinggi_badan'];
+        ?>
+        <table>
+        <tr>
+        <td>Nama</td>
+        <td>: <?=$nama?></td>
+        </tr>
+        <tr>
+        <td>Berat Badan</td>
+        <td>: <?=$berat_badan?></td>
+        </tr>
+        <tr>
+        <td>Tinggi Badan </td>
+        <td>: <?=$tinggi_badan?></td>
+        </tr>
+        </table>
+        <h2><?=t_b($berat_badan,$tinggi_badan)?></h2>
+    <?php }
     ?>
 </body>
 </html>
